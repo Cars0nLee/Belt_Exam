@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+</head>
+<style>
+    body {
+        text-align: center;
+    }
+    table {
+        margin: auto;
+        text-align: center;
+    }
+</style>
+<body>
+    <h1>Welcome to Car Dealz, {{session["first_name"]}} {{session["last_name"]}}!!!</h1>
+    <br><br>
+    <h3>Cars for sale</h3>
+    {% with errors = get_flashed_messages(category_filter=["dash"]) %}
+        {% if errors %}
+            {% for message in errors %}
+                <p style="color:red">{{message}}</p>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+    <table border="1" width="700">
+        <tr>
+            <th>Model</th>
+            <th>Year</th>
+            <th>Seller</th>
+            <th>Actions</th>
+        </tr>
+        {% for i in car %}
+        <tr>
+            <td>{{i.carz.model}}</td>
+            <td>{{i.carz.year}}</td>
+            <td>{{i.first_name}} {{i.last_name}}</td>
+            <td>
+                <a href="/view/{{i.carz.id}}">View</a>
+                {% if i.id == session["user_id"] %}
+                <a href="/edit/{{i.carz.id}}">Edit</a>
+                <a href="/delete/{{i.carz.id}}">Delete</a>
+                {% endif %}
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+    <br><br>
+    <a href="/add_car">Add a Car</a> | 
+    <a href="/dashboard">Dashboard</a> |
+    <a href="/logout">Logout</a>
+</body>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View</title>
+</head>
+<style>
+#purchase a{
+    text-decoration: none;
+    background-color: yellow;
+}
+</style>
+<body>
+    <h2>${{view.price}}</h2>
+    <h2>Model: {{view.model}}</h2>
+    <h2>Make: {{view.make}}</h2>
+    <h2>Year: {{view.year}}</h2>
+    <br>
+    <h2>Description:</h2>
+    <h3>{{view.description}}</h3>
+    <br>
+    <h2>Seller: {{owner.first_name}} {{owner.last_name}}</h2>
+    <div id="purchase">
+        <a href="/purchase/{{view.id}}">Purchase Now</a>
+    </div>
+    <br><br>
+    <a href="/dashboard">Dashboard</a> |
+    <a href="/logout">Logout</a>
+</body>
+</html>

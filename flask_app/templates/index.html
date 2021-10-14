@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login or Register</title>
+</head>
+<style>
+    #container {
+        display: flex;
+        justify-content: space-evenly;
+    }
+</style>
+<body>
+    <div id="container">
+        <div id="left">
+            <h2>Register</h2>
+            {% with errors = get_flashed_messages(category_filter=["register"]) %}
+                {% if errors %}
+                    {% for message in errors %}
+                    <p style="color:red">{{message}}</p>
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
+            <form action="/register" method="POST">
+                <label>First Name:</label>
+                <br>
+                <input type="text" name="first_name">
+                <br><br>
+                <label>Last Name:</label>
+                <br>
+                <input type="text" name="last_name">
+                <br><br>
+                <label>Email:</label>
+                <br>
+                <input type="email" name="email">
+                <br><br>
+                <label>Password:</label>
+                <br>
+                <input type="password" name="password">
+                <br><br>
+                <label>Confirm Password:</label>
+                <br>
+                <input type="password" name="confirm_password">
+                <br><br>
+                <input type="submit" value="Register">
+            </form>
+        </div>
+        <div id="right">
+            <h2>Login</h2>
+            {% with errors = get_flashed_messages(category_filter=["login"]) %}
+                {% if errors %}
+                    {% for message in errors %}
+                    <p style="color:red">{{message}}</p>
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
+            <form action="/login" method="POST">
+                <label>Email:</label>
+                <br>
+                <input type="email" name="email">
+                <br><br>
+                <label>Password:</label>
+                <br>
+                <input type="password" name="password">
+                <br><br>
+                <input type="submit" value="Login">
+            </form>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit</title>
+</head>
+<body>
+    <h1>Edit {{edit.model}}</h1>
+    {% with errors = get_flashed_messages(category_filter=["edit"]) %}
+        {% if errors %}
+            {% for message in errors %}
+                <p style="color:red">{{message}}</p>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+    <form action="/update/{{edit.id}}" method="POST" >
+        <label>Price:</label>
+        <br>
+        <input type="number" name="price" value="{{edit.price}}">
+        <br><br>
+        <label>Model:</label>
+        <br>
+        <input type="text" name="model" value="{{edit.model}}">
+        <br><br>
+        <label>Make:</label>
+        <br>
+        <input type="text" name="make" value="{{edit.make}}">
+        <br><br>
+        <label>Year:</label>
+        <br>
+        <input type="number" name="year" value="{{edit.year}}">
+        <br><br>
+        <label>Description:</label>
+        <br>
+        <textarea cols="50" rows="10" name="description">{{edit.description}}</textarea>
+        <br><br>
+        <input type="submit" value="Update">
+    </form>
+    <br><br>
+    <a href="/dashboard">Dashboard</a> |
+    <a href="/logout">Logout</a>
+</body>
+</html>
